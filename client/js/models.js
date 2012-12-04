@@ -13,6 +13,7 @@ var GeoJSONLayer = function(name, data, wkt){
 	self.layername = ko.observable(name);
 	self.selected = ko.observable(true);
 	self.functionrdy = ko.observable(false);
+	self.functionrdyalt = ko.observable(false);
 	self.wkt = wkt;
 	
 	self.editing = function(){
@@ -31,6 +32,9 @@ var GeoJSONLayer = function(name, data, wkt){
 			map.addLayer(self.geojsonlayer);
 		}
 	});
+	self.functionrdy.subscribe(function(){
+		console.log(self.layername()+" IS: "+self.functionrdy());
+	});
 };
 
 var GeoLayers = function(){
@@ -46,7 +50,12 @@ var GeoLayers = function(){
 	};
 	this.selectedItems = ko.dependentObservable(function() {
         return ko.utils.arrayFilter(this.layers(), function(layer) {
-            return layer.functionrdy;
+            return layer.functionrdy();
+        });
+    }, this);
+    this.selectedItemsAlt = ko.dependentObservable(function() {
+        return ko.utils.arrayFilter(this.layers(), function(layer) {
+            return layer.functionrdyalt();
         });
     }, this);
 

@@ -96,13 +96,12 @@
 
       function addnewosmlayer(){
         name = $('#layerinput').attr('value');
-        socket.emit('dbcall' ,name, "SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) as shape, ST_AsEWKT(ST_Transform(way, 4326)) as wkt FROM planet_osm_polygon WHERE name='"+name+"';");
+        socket.emit('dbcall' ,name, "SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) as shape, ST_AsText(ST_Transform(way, 4326)) as wkt FROM planet_osm_polygon WHERE name='"+name+"';");
       }
 
       //Recieving data from server
       var socket = io.connect('http://localhost:3000');
       socket.on('dbresponse', function(name, data, wkt){
-        console.log("NAME AFTER DB"+name);
         window.layermodel.addlayer(name, data, wkt);
       });
 

@@ -133,6 +133,69 @@
             <p style="color: white"id="areadisplay"></p>
       </div>
     </div>
+    <!-- MERGECONTAINER -->
+    <div class="container" style="padding-right: 40px;">
+      <div class="span4 offset4" style="padding: 20px;" id="merge">
+            <h4 class="pull-left" style="color: grey;"><i class="icon-align-justify"> </i> Choose layers to merge</h4>
+            <table id="layertable" class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>Layers</th>
+                </tr>
+              </thead>
+              <tbody data-bind="foreach: layers">
+              <tr>
+                <td><label class="checkbox"><input type="checkbox" data-bind="checked: functionrdy"></input></label></td>
+                <td>
+                    <span data-bind="text: layername"></span>
+                  </td>
+              </tr>
+            </tbody>
+            </table>
+            <button class="btn btn-small pull-right" onclick="mergelayers();">Merge</button>
+      </div>
+    </div>
+    <!-- SUBTRACTCONTAINER -->
+    <div class="container" style="padding-right: 40px;">
+      <div class="span4 offset4" style="padding: 20px;" id="subtract">
+            <h4 class="pull-left" style="color: grey;"><i class="icon-align-justify"> </i> Choose base layer</h4>
+            <table id="layertable" class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>Layers</th>
+                </tr>
+              </thead>
+              <tbody data-bind="foreach: layers">
+              <tr>
+                <td><label class="checkbox"><input type="radio" name="option" data-bind="checked: functionrdy"></input></label></td>
+                <td>
+                    <span data-bind="text: layername"></span>
+                  </td>
+              </tr>
+            </tbody>
+            </table>
+            <h4 class="pull-left" style="color: grey;"><i class="icon-align-justify"> </i> Choose layer to subtract</h4>
+            <table id="layertable" class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>Layers</th>
+                </tr>
+              </thead>
+              <tbody data-bind="foreach: layers">
+              <tr>
+                <td><label class="checkbox"><input type="radio" name="option" data-bind="checked: functionrdyalt"></input></label></td>
+                <td>
+                    <span data-bind="text: layername"></span>
+                  </td>
+              </tr>
+            </tbody>
+            </table>
+            <button class="btn btn-small pull-right" onclick="subtractlayers();">Subtract</button>
+      </div>
+    </div>
 
     <div class="container">
       <div class="span4 offset8" style="padding: 20px;" id="controls">
@@ -149,13 +212,13 @@
                 </a>
               </li>
               <li class="span1">
-                <a href="#" class="thumbnail">
-                  <img src="images/buffer.jpg" alt="">
+                <a href="#" class="thumbnail" onclick="$(merge).slideToggle();">
+                  <img src="images/merge.png" alt="">
                 </a>
               </li>
               <li class="span1">
-                <a href="#" class="thumbnail">
-                  <img src="images/buffer.jpg" alt="">
+                <a href="#" class="thumbnail" onclick="$(subtract).slideToggle();">
+                  <img src="images/sub.png" alt="">
                 </a>
               </li>
               <li class="span1">
