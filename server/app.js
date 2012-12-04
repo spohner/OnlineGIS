@@ -32,8 +32,17 @@ io.sockets.on('connection', function(socket){
 			});
 		});
 		});
+		socket.on('areacall', function(name, query){
+			var connString = 'tcp://steffenp@localhost:5432/onlinegisdb';
+
+			pg.connect(connString, function(err, client){
+				client.query(query, function(err, result){
+					socket.emit('arearesponse', name, result.rows[0].area);
+				});
+		});
 
 	});
+});
 
 function FeatureCollection(){
 	this.type = 'FeatureCollection';

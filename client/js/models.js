@@ -12,6 +12,7 @@ var GeoJSONLayer = function(name, data, wkt){
 	}).addTo(map);
 	self.layername = ko.observable(name);
 	self.selected = ko.observable(true);
+	self.functionrdy = ko.observable(false);
 	self.wkt = wkt;
 	
 	self.editing = function(){
@@ -20,7 +21,6 @@ var GeoJSONLayer = function(name, data, wkt){
 			console.log("editing!");
 		}
 		else editing = false;
-		buffer(self);
 	};
 
 	self.selected.subscribe(function(){
@@ -30,7 +30,6 @@ var GeoJSONLayer = function(name, data, wkt){
 		else{
 			map.addLayer(self.geojsonlayer);
 		}
-
 	});
 };
 
@@ -45,6 +44,12 @@ var GeoLayers = function(){
 		map.removeLayer(layer.geojsonlayer);
 		self.layers.remove(layer);
 	};
+	this.selectedItems = ko.dependentObservable(function() {
+        return ko.utils.arrayFilter(this.layers(), function(layer) {
+            return layer.functionrdy;
+        });
+    }, this);
+
 };
 
 var layermodel = new GeoLayers();

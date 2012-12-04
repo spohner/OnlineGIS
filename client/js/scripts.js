@@ -61,7 +61,7 @@
       var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/a48e28c08af84ca9938d7b4cd07aa502/997/256/{z}/{x}/{y}.png',
       cloudmadeAttribution = 'Map by CloudMade - Code by @spohner';
       backgroundlayer = new L.TileLayer(cloudmadeUrl, {
-      maxZoom: 18, 
+      maxZoom: 18,
       attribution: cloudmadeAttribution
       });
       }
@@ -94,14 +94,22 @@
         });
       }
 
+      function addnewosmlayer(){
+        name = $('#layerinput').attr('value');
+        socket.emit('dbcall' ,name, "SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) as shape, ST_AsEWKT(ST_Transform(way, 4326)) as wkt FROM planet_osm_polygon WHERE name='"+name+"';");
+      }
+
+      //Recieving data from server
       var socket = io.connect('http://localhost:3000');
       socket.on('dbresponse', function(name, data, wkt){
         console.log("NAME AFTER DB"+name);
         window.layermodel.addlayer(name, data, wkt);
       });
 
-      function addnewosmlayer(){
-
-        name = $('#layerinput').attr('value');
-        socket.emit('dbcall' ,name, "SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) as shape, ST_AsEWKT(ST_Transform(way, 4326)) as wkt FROM planet_osm_polygon WHERE name='"+name+"';");
-      }
+      socket.on('arearesponse', function(name, area){
+        var area = Math.round(area*10)/10;
+        var display = 'Area of '+name+' is: '+area;
+        $('#areadisplay').text(display);
+        $('#arearesult').slideToggle();
+        window.setTimeout(function(){$('#arearesult').slideToggle();},3000);
+      });
