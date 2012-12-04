@@ -51,3 +51,16 @@ function subtractlayers(){
 	console.log(query);
 	socket.emit('dbcall', name, query);
 }
+function intersectlayers(){
+	$('#intersect').slideToggle();
+	var name = "Intersection";
+	var wkt = "";
+	ko.utils.arrayForEach(window.layermodel.selectedItems(), function(layer){
+		wkt = wkt +"ST_GeomFromText('"+layer.wkt+"'),";
+		name = name+"_"+layer.layername();
+		layer.functionrdy(false);
+	});
+	wkt = wkt.slice(0,-1);
+	var query = "SELECT ST_AsGeoJSON(ST_Intersection("+wkt+")) as shape, ST_AsText(ST_Intersection("+wkt+")) as wkt, '"+name+"' as name;";
+	socket.emit('dbcall', name, query);
+}
