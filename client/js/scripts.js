@@ -107,7 +107,7 @@
 
       socket.on('arearesponse', function(name, area){
         var area = Math.round(area*10)/10;
-        var display = 'Area of '+name+' is: '+area;
+        var display = 'Area of '+name+' is: '+area+" squaremeters";
         $('#areadisplay').text(display);
         $('#arearesult').slideToggle();
         window.setTimeout(function(){$('#arearesult').slideToggle();},3000);
