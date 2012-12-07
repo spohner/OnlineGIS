@@ -112,3 +112,11 @@
         $('#arearesult').slideToggle();
         window.setTimeout(function(){$('#arearesult').slideToggle();},3000);
       });
+
+      socket.on('distresponse', function(name, dist){
+        var dist = Math.round(dist*10)/10;
+        var display = name + dist +" meters";
+        $('#areadisplay').text(display);
+        $('#arearesult').slideToggle();
+        window.setTimeout(function(){$('#arearesult').slideToggle();},3000);
+      });

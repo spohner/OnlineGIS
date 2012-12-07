@@ -15,6 +15,8 @@ var GeoJSONLayer = function(name, data, wkt){
 	self.functionrdy = ko.observable(false);
 	self.functionrdyalt = ko.observable(false);
 	self.wkt = wkt;
+
+	self.geojsonlayer.bindPopup(self.layername());
 	
 	self.editing = function(){
 		if(!editing){
@@ -34,7 +36,7 @@ var GeoJSONLayer = function(name, data, wkt){
 	
 	self.renameFunction =  function(layer,event){
 		var element = event.target;
-		var input = $('<input />', {'type':'text', 'name':'nameinput','value':$(element).parent().children('#nametag').html()});
+		var input = $('<input />', {'type':'text', 'name':'nameinput', 'id' : 'nameinput', 'value':$(element).parent().children('#nametag').html()});
 		$(element).parent().children("#nametag").hide();
 		$(element).parent().append(input);
 		input.focus();
@@ -50,6 +52,7 @@ var GeoJSONLayer = function(name, data, wkt){
 				self.layername($(input).val());
 				$(input).hide();
 				$(element).parent().children('#nametag').show();
+				self.geojsonlayer.bindPopup(self.layername());
 			}
 		});
 

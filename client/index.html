@@ -219,6 +219,46 @@
             <button class="btn btn-small pull-right" onclick="intersectlayers();">Intersect</button>
       </div>
     </div>
+    <!-- DISTANCECONTAINER -->
+    <div class="container" style="padding-right: 40px;">
+      <div class="span4 offset4" style="padding: 20px;" id="distance">
+            <h4 class="pull-left" style="color: grey;"><i class="icon-align-justify"> </i> Choose one layer</h4>
+            <table id="layertable" class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>Layers</th>
+                </tr>
+              </thead>
+              <tbody data-bind="foreach: layers">
+              <tr>
+                <td><label class="checkbox"><input type="radio" name="option" data-bind="checked: functionrdy"></input></label></td>
+                <td>
+                    <span data-bind="text: layername"></span>
+                  </td>
+              </tr>
+            </tbody>
+            </table>
+            <h4 class="pull-left" style="color: grey;"><i class="icon-align-justify"> </i> Choose another layer</h4>
+            <table id="layertable" class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>Layers</th>
+                </tr>
+              </thead>
+              <tbody data-bind="foreach: layers">
+              <tr>
+                <td><label class="checkbox"><input type="radio" name="option" data-bind="checked: functionrdyalt"></input></label></td>
+                <td>
+                    <span data-bind="text: layername"></span>
+                  </td>
+              </tr>
+            </tbody>
+            </table>
+            <button class="btn btn-small pull-right" onclick="distancelayers();">Calculate distance</button>
+      </div>
+    </div>
 
     <div class="container">
       <div class="span4 offset8" style="padding: 20px;" id="controls">
@@ -250,8 +290,8 @@
                 </a>
               </li>
               <li class="span1">
-                <a href="#" class="thumbnail">
-                  <img src="images/buffer.jpg" alt="">
+                <a href="#" class="thumbnail" onclick="$(distance).slideToggle();">
+                  <img src="images/dist.png" alt="">
                 </a>
               </li>
               <li class="span1">

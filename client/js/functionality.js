@@ -16,7 +16,7 @@ function arealayer(){
 		ko.utils.arrayForEach(window.layermodel.selectedItems(), function(layer){
 		var wkt = layer.wkt;
 		var name = layer.layername();
-		var query = "SELECT DISTINCT ST_AREA(ST_GeogFromText('"+wkt+"')) as area, '"+name+"' as name;";
+		var query = "SELECT DISTINCT ST_AREA(ST_GeogFromText('"+wkt+"')) as area";
 		socket.emit('areacall', name, query);
 		layer.functionrdy(false);
 	});
@@ -62,4 +62,21 @@ function intersectlayers(){
 	wkt = wkt.slice(0,-1);
 	var query = "SELECT ST_AsGeoJSON(ST_Intersection("+wkt+")) as shape, ST_AsText(ST_Intersection("+wkt+")) as wkt, '"+name+"' as name;";
 	socket.emit('dbcall', name, query);
+}
+function distancelayers(){
+	$('#distance').slideToggle();
+	var name = "Distance between ";
+	var wkt = "";
+	ko.utils.arrayForEach(window.layermodel.selectedItems(), function(layer){
+		wkt = wkt +"ST_Transform(ST_GeomFromText('"+layer.wkt+"',4326),32633),";
+		name = name + layer.layername();
+		layer.functionrdy(false);
+	});
+	ko.utils.arrayForEach(window.layermodel.selectedItemsAlt(), function(layer){
+		wkt = wkt +"ST_Transform(ST_GeomFromText('"+layer.wkt+"',4326),32633)";
+		layer.functionrdyalt(false);
+		name = name +" and " + layer.layername() +" is: ";
+	});
+	var query = "SELECT ST_Distance("+wkt+") as dist";
+	socket.emit('distcall', name, query);
 }
