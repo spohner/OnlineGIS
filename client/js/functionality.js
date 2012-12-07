@@ -48,7 +48,6 @@ function subtractlayers(){
 		layer.functionrdyalt(false);
 	});
 	var query = "SELECT ST_AsGeoJSON(ST_Difference("+wkt+")) as shape, ST_AsText(ST_Difference("+wkt+")) as wkt, '"+name+"' as name;";
-	console.log(query);
 	socket.emit('dbcall', name, query);
 }
 function intersectlayers(){

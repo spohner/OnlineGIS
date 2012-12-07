@@ -19,7 +19,6 @@ var GeoJSONLayer = function(name, data, wkt){
 	self.editing = function(){
 		if(!editing){
 			editing = true;
-			console.log("editing!");
 		}
 		else editing = false;
 	};
@@ -32,9 +31,29 @@ var GeoJSONLayer = function(name, data, wkt){
 			map.addLayer(self.geojsonlayer);
 		}
 	});
-	self.functionrdy.subscribe(function(){
-		console.log(self.layername()+" IS: "+self.functionrdy());
-	});
+	
+	self.renameFunction =  function(layer,event){
+		var element = event.target;
+		var input = $('<input />', {'type':'text', 'name':'nameinput','value':$(element).parent().children('#nametag').html()});
+		$(element).parent().children("#nametag").hide();
+		$(element).parent().append(input);
+		input.focus();
+
+		$(input).on('blur', function(){
+			self.layername($(input).val());
+			$(input).hide();
+			$(element).parent().children('#nametag').show();
+		});
+		$(input).on('keydown', function(e){
+			var code = (e.keyCode ? e.keyCode : e.which);
+			if (code == 13){
+				self.layername($(input).val());
+				$(input).hide();
+				$(element).parent().children('#nametag').show();
+			}
+		});
+
+	};
 };
 
 var GeoLayers = function(){
@@ -44,7 +63,6 @@ var GeoLayers = function(){
 		self.layers.push(new GeoJSONLayer(name, data, wkt));
 	};
 	this.removeLayer = function(layer){
-		console.log("REMOVED: " + layer.layername());
 		map.removeLayer(layer.geojsonlayer);
 		self.layers.remove(layer);
 	};

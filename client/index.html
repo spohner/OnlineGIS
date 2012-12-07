@@ -280,9 +280,9 @@
               <tr>
                 <td><label class="checkbox"><input type="checkbox" data-bind="checked: selected"></input></label></td>
                 <td>
-                    <span data-bind="text: layername"></span>
+                    <span id="nametag" data-bind="text: layername"></span>
                     <button class="btn btn-mini btn-danger pull-right" type="button" data-bind="click: $parent.removeLayer">Remove</button>
-                    <button class="btn btn-mini btn-info pull-right" type="button" data-bind="click: editing" >Edit</button>
+                    <button class="btn btn-mini btn-info pull-right" type="button" data-bind="click: renameFunction" >Edit</button>
                   </td>
               </tr>
             </tbody>
