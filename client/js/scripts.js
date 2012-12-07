@@ -12,6 +12,7 @@
       }).resize();
 
       // initialize the map on the "map" div
+      //var map = new L.Map('map', {center: new L.LatLng(63.431, 10.395), zoom: 15, crs: L.CRS.EPSG4326});
       var map = new L.Map('map', {center: new L.LatLng(63.431, 10.395), zoom: 15});
 
       var backgroundlayer;
@@ -51,6 +52,15 @@
           ggls._type = 'SATELLITE';
           backgroundlayer = ggls;
         }
+        else if(name =='topo2'){
+          setTopo2();
+        }
+         else if(name =='topo2graatone'){
+          setTopo2graatone();
+        }
+        else if(name =='toporaster2'){
+          setToporaster2();
+        }
         else{
           backgroundlayer = new L.StamenTileLayer(name);
         }
@@ -67,7 +77,7 @@
       }
 
       function setMapQuest(){
-        var mapQuestUrl = 'http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg',
+       var mapQuestUrl = 'http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg',
         mapQuestAttribution = 'Map by MapQuest - Code by @spohner';
         backgroundlayer = new L.TileLayer(mapQuestUrl, {
           maxZoom: 18,
@@ -91,6 +101,44 @@
         backgroundlayer = new L.TileLayer(osmUrl, {
           maxZoom: 18,
           attribution: osmAttribution
+        });
+      }
+
+      function setTopo2(){
+        var topo2Url = 'http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo2&zoom={z}&x={x}&y={y}',
+        kartverketAttribution = 'Map by Kartverket - Code by @spohner';
+        backgroundlayer = new L.TileLayer(topo2Url, {
+          minZoom: 0,
+          maxZoom: 17,
+          tileSize: 256,
+          attribution: kartverketAttribution
+        });
+      }
+      function setTopo2graatone(){
+        var topo2graatoneUrl = 'http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo2graatone&zoom={z}&x={x}&y={y}',
+        kartverketAttribution = 'Map by Kartverket - Code by @spohner';
+        backgroundlayer = new L.TileLayer(topo2graatoneUrl, {
+          minZoom: 0,
+          maxZoom: 17,
+          tileSize: 256,
+          attribution: kartverketAttribution
+        });
+
+        // var wmslayer = new L.TileLayer.WMS('http://wms.geonorge.no/skwms1/wms.norgeibilder', {
+        //   layers: 'SatelliteImage',
+        //   format: 'image/png',
+        //   transparent: true
+        // });
+        // backgroundlayer = wmslayer;
+      }
+      function setToporaster2(){
+        var toporaster2Url = 'http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=toporaster2&zoom={z}&x={x}&y={y}',
+        kartverketAttribution = 'Map by Kartverket - Code by @spohner';
+        backgroundlayer = new L.TileLayer(toporaster2Url, {
+          minZoom: 0,
+          maxZoom: 17,
+          tileSize: 256,
+          attribution: kartverketAttribution
         });
       }
 

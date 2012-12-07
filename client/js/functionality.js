@@ -80,3 +80,14 @@ function distancelayers(){
 	var query = "SELECT ST_Distance("+wkt+") as dist";
 	socket.emit('distcall', name, query);
 }
+function simplifylayer(){
+	$('#simple').slideToggle();
+		ko.utils.arrayForEach(window.layermodel.selectedItems(), function(layer){
+		var wkt = layer.wkt;
+		var name = "Simplified_"+layer.layername();
+		var query = "SELECT ST_AsGeoJSON(ST_SimplifyPreserveTopology(ST_GeomFromText('"+wkt+"'),50)) as shape";
+		console.log(query);
+		socket.emit('dbcall', name, query);
+		layer.functionrdy(false);
+	});
+}

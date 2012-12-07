@@ -54,6 +54,10 @@
                 <i class="icon-th"> </i> Background map
               </a>
               <ul class="dropdown-menu">
+                <li class="nav-header">Norwegian Mapping Authority</li>
+                <li><a onclick="backgroundmapchange('topo2');" href="#">Topo2</a></li>
+                <li><a onclick="backgroundmapchange('topo2graatone');" href="#">Topo2 Gray</a></li>
+                <li><a onclick="backgroundmapchange('toporaster2');" href="#">Toporaster2</a></li>
                 <li class="nav-header">Open source</li>
                 <li><a id="cloudmade" onclick="backgroundmapchange('cloudmade');" href="#">Cloudmade</a></li>
                 <li><a onclick="backgroundmapchange('mapquest');" href="#">MapQuest</a></li>
@@ -259,6 +263,29 @@
             <button class="btn btn-small pull-right" onclick="distancelayers();">Calculate distance</button>
       </div>
     </div>
+    <!-- Simplifycontainer -->
+      <div class="container" style="padding-right: 40px;">
+      <div class="span4 offset4" style="padding: 20px;" id="simple">
+            <h4 class="pull-left" style="color: grey;"><i class="icon-align-justify"> </i> Choose layer to simplify</h4>
+            <table id="layertable" class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>Layers</th>
+                </tr>
+              </thead>
+              <tbody data-bind="foreach: layers">
+              <tr>
+                <td><label class="checkbox"><input type="radio" name="option" data-bind="checked: functionrdy"></input></label></td>
+                <td>
+                    <span data-bind="text: layername"></span>
+                  </td>
+              </tr>
+            </tbody>
+            </table>
+            <button class="btn btn-small pull-right" onclick="simplifylayer();">Simplify</button>
+      </div>
+    </div>
 
     <div class="container">
       <div class="span4 offset8" style="padding: 20px;" id="controls">
@@ -295,13 +322,8 @@
                 </a>
               </li>
               <li class="span1">
-                <a href="#" class="thumbnail">
-                  <img src="images/buffer.jpg" alt="">
-                </a>
-              </li>
-              <li class="span1">
-                <a href="#" class="thumbnail">
-                  <img src="images/buffer.jpg" alt="">
+                <a href="#" class="thumbnail" onclick="$(simple).slideToggle();">
+                  <img src="images/simple.png" alt="">
                 </a>
               </li>
               <li class="divider"></li>
