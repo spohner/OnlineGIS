@@ -59,6 +59,12 @@ body{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
+td{
+	max-width: 150px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 
 .btn-mini{
 	margin-left: 2px;
@@ -67,4 +73,17 @@ body{
 
 #nameinput{
 	width: 50%;
+}
+.brand{ font-family: 'PacificoRegular', Helvetica, Arial;}
+
+@font-face {
+    font-family: 'PacificoRegular';
+    src: url('../font/Pacifico-webfont.eot');
+    src: url('../font/Pacifico-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/Pacifico-webfont.woff') format('woff'),
+         url('../font/Pacifico-webfont.ttf') format('truetype'),
+         url('../font/Pacifico-webfont.svg#PacificoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
