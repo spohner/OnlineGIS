@@ -2,7 +2,7 @@
         $.ajaxSetup({cache:false});
         $('#map').css('height', ($(window).height() - 40));
         $("#layertable").tableDnD();
-        $('#addlayermodal').on('shown', function(){
+        $('#addnewlayerbutton').on('click', function(){
           $('#layerinput').focus();
         });
       });
@@ -11,6 +11,14 @@
         $('#map').css('height', ($(window).height() - 40));
       }).resize();
 
+      $("#layerinput").keyup(function (e) {
+        if (e.keyCode == 13) {
+        addnewosmlayer();
+        $("#addnewlayers").slideToggle();
+        $("#controls").slideToggle();
+    }
+});
+
       // initialize the map on the "map" div
       //var map = new L.Map('map', {center: new L.LatLng(63.431, 10.395), zoom: 15, crs: L.CRS.EPSG4326});
       var map = new L.Map('map', {center: new L.LatLng(63.431, 10.395), zoom: 15});
@@ -18,6 +26,7 @@
       var backgroundlayer;
       setCloudmadeBack();
       map.addLayer(backgroundlayer);
+      map.addControl(new L.Control.Scale());
 
       function backgroundmapchange(name){
         map.removeLayer(backgroundlayer);
@@ -144,6 +153,7 @@
 
       function addnewosmlayer(){
         name = $('#layerinput').attr('value');
+        document.getElementById("inputform").reset();
         socket.emit('dbcall' ,name, "SELECT ST_AsGeoJSON(ST_Transform(way, 4326)) as shape, ST_AsText(ST_Transform(way, 4326)) as wkt FROM planet_osm_polygon WHERE name='"+name+"';");
       }
 
