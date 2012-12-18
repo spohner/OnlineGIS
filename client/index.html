@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title>Gisse GIS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -17,10 +16,6 @@
 
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
 
   <!-- Leaflet includes -->
@@ -91,9 +86,10 @@
             <form id="inputform">
               <input type="text" id="layerinput" placeholder="Type in a municipality or county..."></input>
               <span class="help-block"> Example: "Malvik", "Sør-Trøndelag", "Oslo"</span>
+              <span class="help-block"> OBS! Case-sensitive. </span>
             </form>
             <button class="btn" onclick="$(addnewlayers).slideToggle();">Close</button>
-            <button class="btn btn-primary" onclick="$(controls).slideToggle(); $(addnewlayers).slideToggle(); addnewosmlayer();" data-dismiss="modal">Add layer</button>
+            <button class="btn btn-primary pull-right" onclick="$(controls).slideToggle(); $(addnewlayers).slideToggle(); addnewosmlayer();" data-dismiss="modal">Add layer</button>
       </div>
     </div>
     <!-- BUFFERCONTAINER -->
@@ -357,6 +353,7 @@
                     <span id="nametag" data-bind="text: layername"></span>
                     <button class="btn btn-mini btn-danger pull-right" type="button" data-bind="click: $parent.removeLayer">Remove</button>
                     <button class="btn btn-mini btn-info pull-right" type="button" data-bind="click: renameFunction" >Edit</button>
+                    <button class="btn btn-mini pull-right" type="button" data-bind="click: zoomTo">Zoom</button>
                   </td>
               </tr>
             </tbody>

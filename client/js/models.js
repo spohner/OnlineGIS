@@ -57,6 +57,9 @@ var GeoJSONLayer = function(name, data, wkt){
 		});
 
 	};
+	self.zoomTo = function(){
+		map.fitBounds(self.geojsonlayer.getBounds());
+	}
 };
 
 var GeoLayers = function(){
