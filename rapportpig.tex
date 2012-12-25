@@ -60,7 +60,7 @@
 		\item Simplify - Forenkler geometrien til et vektorlag ved Douglas-Peuker. 
 	\end{itemize}
 	
-	Programmet består av tre deler - database, serverlag og klient. Kommunikasjonen mellom server og klient skjer via Websockets\cite{websockets}. Klienten er skrevet i Javascript, med HTML5 og CSS3. Tilleggsbiblioteker som er brukt i klienten er Knockout.js og jQuery, samt Twitter Bootstrap. Serverlaget er skrevet i node.js som tilbyr Javascript til bruk for serverkode. Her er sockets.io, Express og databasedriver brukt som tilleggsbiblioteker. Eksempeldata brukt i utviklingen og til demostrasjon er hentet fra Open Street Map og lagres i en PostgreSQL-database med PostGIS-utvidelse. Alt er lagret i skyen hos Amazons EC2-tjeneste, som sørger for at programmet leveres til brukers nettleser. 
+	Programmet består av tre deler - database, serverlag og klient. Kommunikasjonen mellom server og klient skjer via Websockets\cite{websockets}. Klienten er skrevet i Javascript, med HTML5 og CSS3. Tilleggsbiblioteker som er brukt i klienten er Knockout.js\cite{knockout} og jQuery\cite{jquery}, samt Twitter Bootstrap\cite{bootstrap}. Serverlaget er skrevet i node.js som tilbyr Javascript til bruk for serverkode. Her er sockets.io\cite{sockets}, Express og databasedriver brukt som tilleggsbiblioteker. Eksempeldata brukt i utviklingen og til demostrasjon er hentet fra Open Street Map og lagres i en PostgreSQL-database med PostGIS-utvidelse\cite{postgis}. Alt er lagret i skyen hos Amazons EC2-tjeneste\cite{ec2}, som sørger for at programmet leveres til brukers nettleser. 
 	
 	Resultatet er et brukervennlig GIS som utfører enkle operasjoner vi kjenner fra før, på frie vektordata som eksempel. ''Gisse GIS'' kan prøves ved å besøke adressen http://gisse.pohnerhenriksen.com i din nettleser.
 	
@@ -107,11 +107,11 @@
 		
 		CSS3 tilbyr en del nye funksjoner i forhold til den eldre CSS 2.0. Jeg har ikke tatt i bruk altfor mange av disse nye funksjonene, men gjort meg litt kjent med mulighetene. I applikasjonen har jeg rundet av hjørnene på menyene med kommandoer hentet fra CSS3. Dette skaper et mer helhetlig, rent og funksjonelt design. 
 	
-		\subsubsection{Twitter Bootstrap}
+		\subsubsection{Twitter Bootstrap\cite{bootstrap}}
 			
 			Grunnet prosjektets tidsbegrensning og for enkelhetens skyld brukte jeg et rammeverk for å sette opp hjemmesiden. Dette heter Twitter Bootstrap, og gir muligheten til å bruke en hel del forhåndsdesignede elementer. Rammeverket er svært populært. Med dette kunne jeg lage navigeringsstripa på toppen, samt design på knapper. Hjelpesiden, og ''om meg'' involverer sterk bruk av dette rammeverket. Verktøymenyene er derimot laget spesielt for denne siden. Rammeverket er svært nyttig for såkalt "responsivt design". På den måten kan man lage nettsider som ser bra ut på store og små skjermer, også smarttelefoner og nettbrett. 
 			
-		\subsubsection{Leaflet}
+		\subsubsection{Leaflet\cite{leaflet}}
 		
 			Kartet på siden tegnes av javascriptbiblioteket Leaflet. Dette er et nytt og moderne alternativ til det mer kjente Open Layers. Leaflet er kjent for å være bedre på små skjermer, samt enklere å bruke. Den tar i bruk canvas-elementet i HTML5. Jeg bruker Leaflet til å tegne GeoJSON-filer fra som mottas fra serveren, vise bakgrunnskart og popup-elementer. Den fungerer fint på nettbrett og smarttelefoner da klype-zoom støttes. Bakgrunnskart som er tilgjenglig er:
 			
@@ -131,32 +131,42 @@
 	
 		JavaScript brukes for å gi dynamisk innhold til nettsider, og er et naturlig valg i enhver webapplikasjon. Dette er et språk som bare blir mer og mer populært, og er spådd en stor fremtid. ''Gisse GIS'' tar i bruk javascript i mange deler av programmet. Og står for selve kjernen av koden. 
 		
-		\subsubsection{jQuery}
+		\subsubsection{jQuery\cite{jquery}}
 		
 		jQuery er et støttebibliotek til javascript. Det finnes knapt javascript som ikke tar i bruk dette. Det forenkler kodeflyten, og kommandoene i javascript. Biblioteket legger flere og enklere verktøy i verktøykasse til webutvikleren. jQuery blandt annet for animasjonene av menyene, pekere på dynamisk innhold og menyhåndtering.
 		
-		\subsubsection{Knockout.js}
+		\subsubsection{Knockout.js\cite{knockout}}
 		
 		Knockout.js implementerer Model-View-View-Model (MVVC) på en enkel måte i applikasjonen. Den holder styr på vektorlagene, og oppdaterer brukergrensesnittet om den oppdager noen endringer. På denne måten er det enkelt å holde applikasjonen konsistent, og alltid presentere brukeren de riktige dataene. Med Knockout.js kan jeg knytte metoder til hvert enkelt lag, og gjøre operasjoner som navneendring og fjerning lettere. Biblioteket holder regnskap over hvilke lag som blir valgt til å manipuleres. 
 		
-		\subsubsection{Node.js}
+		\subsubsection{Node.js\cite{node}}
 		
 		Videre over på serverdelen gjør node.js at jeg kan skrive en webserver ved hjelp av javascript. Node kompilerer javascript-koden ned til C før den kjøres. Dette biblioteket er i vinden for tiden, og er en veldig spennende teknologi. Den praktiserer asynkron I/O-håndtering og er ''event-driven''. Det gjør at webserveren enkelt kan skalere og håndtere store brukermasser. I tillegg gjorde det serverkoden enkel å skrive da syntaksen er den samme som for klienten. Jeg har lenge ønsket å utforske mulighetene node.js tilbyr, og valgte derfor dette fremfor .NET eller Java-løsninger. Det har jeg ikke angret på.
 		
-		\subsubsection{Socket.io}
+		\subsubsection{Socket.io\cite{node}}
 		
 		Socket.io er en utvidelse av node.js. Det gjør det mulig for applikasjonen å ta i bruk websockets for raskere overføring av data. Dette er en ny standard i HTML5 som reduserer ''overhead'' og gjør at vektorlag sendes raskere mellom server og klient. Biblioteket støtter også tilbakefall på eldre teknologier som long-pulling for eldre nettlesere.
 		
-	\subsection{PostgreSQL - PostGIS}
+	\subsection{PostgreSQL - PostGIS\cite{postgis}}
 		
 		Dataene fra OpenStreetMap har blitt importert i en database som kjører på serveren. Jeg valgte PostGIS som databaseløsning, da denne er definitivt best på romlige spørringer. PostGIS ligger til grunn for de funksjonene som programmet tilbyr, og er kjernen i dette programmet. Alle funksjonene i programmet bygger bruker tilsvarende funksjoner i PostGIS. I den nyeste versjonen av PostGIS kan man spørre etter GeoJSON på vektorlag, og dette har forenklet visningen av dataene betraktelig. 
 		
 
-\section{Server i skyen - Amazon EC2}
+\section{Server i skyen - Amazon EC2\cite{ec2}}
 
 	En av kriteriene i oppgaveteksten er ''Applikasjonen skal testast ut og gjerast tilgjengeleg for omverda. Er det ein Web-basert applikasjon må den installerast på eit område som ikkje vert sletta med studentbrukar''. For å oppnå dette leier jeg en server hos Amazon EC2. Denne kjører databasen, og serverdelen av programmet. I en begrenset periode er dette gratis. Om programmet ikke får en altfor stor brukermasse burde denne løsningen holde godt. Serveren overvåkes jevnlig, men det kan hende at en bruker kan fremtvinge en feil som fører til stopp. Om man opplever dette så send en mail til undertegnede. Serverdelen logger hvilke ip-addresser som bruker programmet, og hvilke vektorlag de etterspør.
 	
-	Jeg bruker også et eget domene, pohnerhenriksen.com, for å gjøre det enklere for brukere å koble seg til applikasjonen. Et subdomene ''gisse'' peker nå på Amazonserveren. Og addressen til programmet er da: http://gisse.pohnerhenriksen.com.  
+	Jeg bruker også et eget domene, pohnerhenriksen.com, for å gjøre det enklere for brukere å koble seg til applikasjonen. Et subdomene ''gisse'' peker nå på Amazonserveren. Og addressen til programmet er da: http://gisse.pohnerhenriksen.com. 
+	
+\section{Dataflyt}
+
+	Slik programmet fungerer ligger OpenStreetMap-data i en PostGIS database. Når klienten spør om å utføre en funksjon vil den bruke websockets for å sende wkt-data til serveren med en spørring. Serverdelen mottar og spør databasen. Det databasen returnerer sender serveren til klienten igjen. Det er altså databasesystemet som gjør det tyngste arbeidet her. Serveren kaster bare informasjonen videre, og fungerer som et kommunikasjonsledd. 
+	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{datadiagram.png}
+	\caption{Dataflytdiagram / Arkitektur}
+	\end{figure}
 
 \section{Testscenario}
 
@@ -165,6 +175,12 @@
 	Vi bruker Trondheimsområdet som testområde. Først åpner vi applikasjonen ved å navigere til http://gisse.pohnerhenriksen.com i nettleseren. Programmet sentrerer seg i Trondheim ved oppstart og kontrollpanelet er synlig. Vi bytter til et kart med mer informasjon ved å trykke på ''Background map'' og velge Kartverkets topo2-kart. 
 	
 	Vi har en truet sjøfuglart i Jonsvatnet og Selbusjøen. Vi vil konstruere et verneområde rundt disse vannene, og finne ut hvilken del av dette området som ligger i Malvik kommune. Deretter vil vi finne avstanden til Trondheim sentrum og arealet av delen som verneområdet som ligger i Malvik.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.3]{gissescreen.png}
+		\caption{Skjermbilde fra ''GIsse GIS'' som viser vektorlagene Jonsvatnet og Selbusjøen}
+	\end{figure}
 	
 	Vi begynner ved å trykke på knappen for å legge til et nytt lag. En dialogboks dukker opp og vi skriver Jonsvatnet og trykker på ''Add Layer'' for å legge til laget. Tilsvarende gjør vi for Selbusjøen. Vi husker på at det i dialogboksen står at dataene er sensitive til store og små bokstaver. For å zoome raskt til Jonsvatnet trykker vi på ''zoom'' i lagpanelet. For en enklere analyse slår vi sammen de to sjøene ved å velge merge-funksjonen, og lage et felles vannlag. Deretter huker vi av de to lagene slik at de slåes sammen. Det nye laget dukker opp i panelet. For å enklere se hva vi jobber med slår vi av alle lag bortsett fra det vi nettopp har lagt til ved å huke av huken i lagpanelet. Trykker nok en gang på zoom for å få et best mulig overblikk over dataene. Vi gir det nye laget et nytt navn for at det skal bli lettere å jobbe med. Det gjør vi ved å trykke på ''edit'' og skrive inn ''Vann''.  For å lage et verneområde ønsker vi en utvidelse av lagene med 2km. Det gjør vi ved å velge buffer-funksjonen. Vi velger laget vi ønsker buffer på, og skriver 2000 i dialogboksen før vi trykker på ''Add buffer''. Et nytt lag blir lagt til i panelet. Nå kan vi endre navnet på dette laget til ''Verneområde''. Nå vil vi vite hvilken del som av dette verneområdet som ligger i Malvik kommune. Vi trykker på ''Add new layer'' for å legge til Malvik. For å kunne lage et lag av overlappen mellom Malvik og verneområdet bruker vi intersect-funksjonen. Vi velger Malvik og verneområdet og finner overlappen. For å se bedre på hvor dette området er bytter vi til et satelittbilde via ''Background map''-knappen, og skrur av alle lag bortsett fra det siste vi la til. Arealet fåes ved å å bruke area-funksjonen og velge laget. En liten dialogboks viser arealet i kvadratmeter i noen sekunder.	For å finne avstanden mellom Trondheim sentrum og området legger vi til et lag som er Marinen. Og bruker deretter Distance-funksjonen. Vi velger Marinen og overlapplaget og minste avstand dukker opp. For å vise frem området i kommuneplanen vil vi ha en forenklet utgave. Simplify kan hjelpe oss med det. Vi velger Simplify og laget vårt, og får tilbake en forenklet utgave. Vi endrer navnet til "Verneområde sjøfugl". Dermed har vi konstruert verneområdet. 
 	
@@ -192,6 +208,10 @@
 	
 	En bedre hjelpetjeneste kunne vært laget for å veillede nye brukere. Med dette kunne også programmet lyktes bedre i undervisningssammenheng. En interaktiv tutorial hadde vært morsomt å få til, men lå utenfor denne oppgaven. 
 	
+	Det hadde også vært mulig å utvide løsningen slik at brukeren kunne importere sine egne GeoJSON eller ESRI Shapefiler.
+	
+	Slik programmet er i dag sendes informasjon i både GeoJSON og som WKT-strings mellom server og klient. Dette er ikke optimalisert. Optimalt hadde vi kun sendt en av disse. Grunnen til dette er at PostGIS kan lage GeoJSON fra en spørring, men selve spørringen kan ikke holde GeoJSON. Derfor må to versjoner av hvert vektorlag sendes. 
+	
 \section{Diskusjon - Løser applikasjonen oppgaven?}
 	Slik jeg tolker oppgaven er den å lage et GIS med enkel funksjonalitet, som er bra ut og er enkelt å bruke. Den skal fungere på et utvalgt sett med eksempeldata. Jeg mener at ''Gisse GIS'' oppfyller disse kriteriene. Programmet kunne ha vært enda enklere å bruke, spesielt for de som ikke kjenner til geografiske informasjonssytem fra før av. Design er subjektivt, men jeg mener at programmet virker attraktivt samtidig som det er lett å finne funksjonene. Programmet er vektorbasert noe som betyr at det stilles andre krav enn ved rasterbaserte applikasjoner.
 	
@@ -215,6 +235,24 @@
 
 \bibitem{websockets}
 	Wikipedia: Websockets, http://en.wikipedia.org/wiki/WebSocket, 22.12.2012
+\bibitem{knockout}
+	Knockout.js: http://knockoutjs.com, 25.12.2012
+\bibitem{jquery}
+	jQuery: http://jquery.com, 25.12.2012
+\bibitem{node}
+	Node.js: http://nodejs.org, 25.12.2012
+\bibitem{postgis}
+	PostGIS: http://postgis.refractions.net/, 25.12.2012
+\bibitem{socket}
+	Socket.io: http://socket.io/, 25.12.2012
+\bibitem{github}
+	Github @ spohner: http://github.com/spohner, 25.12.2012
+\bibitem{bootstrap}
+	Twitter Bootstrap: http://twitter.github.com/bootstrap/, 25.12.2012
+\bibitem{ec2}
+	Amazon EC2: http://aws.amazon.com/ec2/, 25.12.2012
+\bibitem{leaflet}
+	Leaflet: http://leafletjs.com/, 25.12.2012
 
 \end{thebibliography}
 
