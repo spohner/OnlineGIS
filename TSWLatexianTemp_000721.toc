@@ -1,0 +1,18 @@
+\select@language {norsk}
+\contentsline {section}{\numberline {1}Innledning}{4}{section.1}
+\contentsline {section}{\numberline {2}Form\IeC {\r a}l med applikasjonen}{4}{section.2}
+\contentsline {section}{\numberline {3}Valg av programmeringsspr\IeC {\r a}k}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}HTML5 og CSS3}{5}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Twitter Bootstrap}{5}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Leaflet}{5}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}JavaScript}{6}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}jQuery}{6}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Knockout.js}{6}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Node.js}{7}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}socket.io}{7}{subsubsection.3.2.4}
+\contentsline {subsection}{\numberline {3.3}PostgreSQL - PostGIS}{7}{subsection.3.3}
+\contentsline {section}{\numberline {4}Server i skyen - Amazon EC2}{7}{section.4}
+\contentsline {section}{\numberline {5}Testscenario}{7}{section.5}
+\contentsline {section}{\numberline {6}Bugs, feil og mangler}{7}{section.6}
+\contentsline {subsection}{\numberline {6.1}Forbedringspotensiale}{7}{subsection.6.1}
+\contentsline {section}{\numberline {7}Diskusjon - L\IeC {\o }ser applikasjonen oppgaven?}{7}{section.7}
