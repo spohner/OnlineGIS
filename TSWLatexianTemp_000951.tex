@@ -97,7 +97,7 @@
 	
 	I tillegg til funksjonene man kan utføre på vektordata er også mange ulike bakgrunnskart vist frem i applikasjonen. Disse kan brukes uavhengig av resten av programmet. Både kart, hybridkart og satelittbilder er tilgjenglig. Det finnes få eksempler på implementasjon av Kartverkets kart i websammenheng, og jeg håper koden kan hjelpe flere i å ta i bruk disse. Bedre kart finnes jo ikke over Norge! Og altfor få norske kartapplikasjoner tar i bruk Kartverkets kart. 
 
-\section{Valg av programmeringsspråk}
+\section{Valg av programmeringsspråk og programbibliotek}
 	
 	Jeg var aldri i tvil om at det var GIS-oppgaven jeg ville velge. For å kunne nå ut til flest mulig brukere, uavhengig av maskinvarekonfigurasjon og plattform ville jeg bruke nettleseren. Da kunne også applikasjonen fungere på smarttelefoner og nettbrett i tillegg til desktop. Og dette uten å lage egne apps for disse.
 	
@@ -137,18 +137,55 @@
 		
 		\subsubsection{Knockout.js}
 		
-		Knockout.js implementerer Model-View-View-Model (MVVC) på en enkel måte i applikasjonen. Den holder styr på vektorlagene, og oppdaterer brukergrensesnittet om den oppdager noen endringer. 
+		Knockout.js implementerer Model-View-View-Model (MVVC) på en enkel måte i applikasjonen. Den holder styr på vektorlagene, og oppdaterer brukergrensesnittet om den oppdager noen endringer. På denne måten er det enkelt å holde applikasjonen konsistent, og alltid presentere brukeren de riktige dataene. Med Knockout.js kan jeg knytte metoder til hvert enkelt lag, og gjøre operasjoner som navneendring og fjerning lettere. Biblioteket holder regnskap over hvilke lag som blir valgt til å manipuleres. 
 		
 		\subsubsection{Node.js}
-		\subsubsection{socket.io}
+		
+		Videre over på serverdelen gjør node.js at jeg kan skrive en webserver ved hjelp av javascript. Node kompilerer javascript-koden ned til C før den kjøres. Dette biblioteket er i vinden for tiden, og er en veldig spennende teknologi. Den praktiserer asynkron I/O-håndtering og er ''event-driven''. Det gjør at webserveren enkelt kan skalere og håndtere store brukermasser. I tillegg gjorde det serverkoden enkel å skrive da syntaksen er den samme som for klienten. Jeg har lenge ønsket å utforske mulighetene node.js tilbyr, og valgte derfor dette fremfor .NET eller Java-løsninger. Det har jeg ikke angret på.
+		
+		\subsubsection{Socket.io}
+		
+		Socket.io er en utvidelse av node.js. Det gjør det mulig for applikasjonen å ta i bruk websockets for raskere overføring av data. Dette er en ny standard i HTML5 som reduserer ''overhead'' og gjør at vektorlag sendes raskere mellom server og klient. Biblioteket støtter også tilbakefall på eldre teknologier som long-pulling for eldre nettlesere.
+		
 	\subsection{PostgreSQL - PostGIS}
+		
+		Dataene fra OpenStreetMap har blitt importert i en database som kjører på serveren. Jeg valgte PostGIS som databaseløsning, da denne er definitivt best på romlige spørringer. PostGIS ligger til grunn for de funksjonene som programmet tilbyr, og er kjernen i dette programmet. Alle funksjonene i programmet bygger bruker tilsvarende funksjoner i PostGIS. I den nyeste versjonen av PostGIS kan man spørre etter GeoJSON på vektorlag, og dette har forenklet visningen av dataene betraktelig. 
+		
 
 \section{Server i skyen - Amazon EC2}
 
+	En av kriteriene i oppgaveteksten er ''Applikasjonen skal testast ut og gjerast tilgjengeleg for omverda. Er det ein Web-basert applikasjon må den installerast på eit område som ikkje vert sletta med studentbrukar''. For å oppnå dette leier jeg en server hos Amazon EC2. Denne kjører databasen, og serverdelen av programmet. I en begrenset periode er dette gratis. Om programmet ikke får en altfor stor brukermasse burde denne løsningen holde godt. Serveren overvåkes jevnlig, men det kan hende at en bruker kan fremtvinge en feil som fører til stopp. Om man opplever dette så send en mail til undertegnede. Serverdelen logger hvilke ip-addresser som bruker programmet, og hvilke vektorlag de etterspør.
+	
+	Jeg bruker også et eget domene, pohnerhenriksen.com, for å gjøre det enklere for brukere å koble seg til applikasjonen. Et subdomene ''gisse'' peker nå på Amazonserveren. Og addressen til programmet er da: http://gisse.pohnerhenriksen.com.  
+
 \section{Testscenario}
+
+
 \section{Bugs, feil og mangler}
+
+	Programmet er i jevnlig utvikling, og jeg vil fortsette å utvikle det etter dette prosjektet har blitt vurdert. Slik det fremstår i dag (25.12.2012) inneholder programmet en rekke feil eller bugs. Noen er mer kritiske enn andre. Applikasjonen har blitt testet på andre personer enn undertegnede. Både studenter i Geomatikk og andre personer bruker programmet på en måte jeg ikke så for meg. Og i denne bruken har det dukket opp flere feil. Noen av disse er:
+	
+	\begin{enumerate}
+		\item Kontrollmenyen ligger feil på nettbrett
+		\item Case-sensitive navn på eksempeldata forvirrer
+		\item Lange navn på lag flytter på knappene
+		\item Ved endring av navn (''Edit-knapp'') flytter ofte navigasjonsstripa på seg.
+		\item Ved besøk av hjelpeside eller ''om meg'' lagres ikke arbeidet.
+		\item Enkelte eksempeldata som ''Nidelva'' vil ikke utføres funksjoner på.
+		
+	\end{enumerate}
+	
+	
 	\subsection{Forbedringspotensiale}
+	
+	Programmet kjører ikke på smarttelefoner, og ikke optimalt på nettbrett. Her finnes et stort forbedringspotensiale. Det krever en hel del arbeid for å få dette til å fungere. Med mindre skjermareal må menyer skjules på en annen måte enn de gjøres i applikasjonen i dag.
+	
+	Designet har også et forbedringspotensiale. I dag mynter programmet veldig på ''Twitter Bootstrap'', og det er ønskelig å lage et mer spesielt og annerledes design. Her kreves det tid i CSS-koden. I utviklingen av programmet har tidsbegrensningen tvunget meg til å fokusere på funksjonalitet.
+	
+	En bedre hjelpetjeneste kunne vært laget for å veillede nye brukere. Med dette kunne også programmet lyktes bedre i undervisningssammenheng. En interaktiv tutorial hadde vært morsomt å få til, men lå utenfor denne oppgaven. 
 \section{Diskusjon - Løser applikasjonen oppgaven?}
+
+	
 
 \newpage
 \begin{thebibliography}{9}

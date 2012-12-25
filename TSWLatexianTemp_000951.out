@@ -1,6 +1,6 @@
 \BOOKMARK [1][-]{section.1}{Innledning}{}% 1
 \BOOKMARK [1][-]{section.2}{Form\345l med applikasjonen}{}% 2
-\BOOKMARK [1][-]{section.3}{Valg av programmeringsspr\345k}{}% 3
+\BOOKMARK [1][-]{section.3}{Valg av programmeringsspr\345k og programbibliotek}{}% 3
 \BOOKMARK [2][-]{subsection.3.1}{HTML5 og CSS3}{section.3}% 4
 \BOOKMARK [3][-]{subsubsection.3.1.1}{Twitter Bootstrap}{subsection.3.1}% 5
 \BOOKMARK [3][-]{subsubsection.3.1.2}{Leaflet}{subsection.3.1}% 6
@@ -8,7 +8,7 @@
 \BOOKMARK [3][-]{subsubsection.3.2.1}{jQuery}{subsection.3.2}% 8
 \BOOKMARK [3][-]{subsubsection.3.2.2}{Knockout.js}{subsection.3.2}% 9
 \BOOKMARK [3][-]{subsubsection.3.2.3}{Node.js}{subsection.3.2}% 10
-\BOOKMARK [3][-]{subsubsection.3.2.4}{socket.io}{subsection.3.2}% 11
+\BOOKMARK [3][-]{subsubsection.3.2.4}{Socket.io}{subsection.3.2}% 11
 \BOOKMARK [2][-]{subsection.3.3}{PostgreSQL - PostGIS}{section.3}% 12
 \BOOKMARK [1][-]{section.4}{Server i skyen - Amazon EC2}{}% 13
 \BOOKMARK [1][-]{section.5}{Testscenario}{}% 14
