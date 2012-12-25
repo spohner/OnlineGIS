@@ -160,6 +160,14 @@
 
 \section{Testscenario}
 
+	I dette kapittelet vil jeg skissere et testscenario som illustrerer hva ''Gisse GIS'' er kapabel til. Dette kan brukes som en veilledning, og vil kun vise enkelte av funksjonene applikasjonen tilbyr.
+	\\ \\
+	Vi bruker Trondheimsområdet som testområde. Først åpner vi applikasjonen ved å navigere til http://gisse.pohnerhenriksen.com i nettleseren. Programmet sentrerer seg i Trondheim ved oppstart og kontrollpanelet er synlig. Vi bytter til et kart med mer informasjon ved å trykke på ''Background map'' og velge Kartverkets topo2-kart. 
+	
+	Vi har en truet sjøfuglart i Jonsvatnet og Selbusjøen. Vi vil konstruere et verneområde rundt disse vannene, og finne ut hvilken del av dette området som ligger i Malvik kommune. Deretter vil vi finne avstanden til Trondheim sentrum og arealet av delen som verneområdet som ligger i Malvik.
+	
+	Vi begynner ved å trykke på knappen for å legge til et nytt lag. En dialogboks dukker opp og vi skriver Jonsvatnet og trykker på ''Add Layer'' for å legge til laget. Tilsvarende gjør vi for Selbusjøen. Vi husker på at det i dialogboksen står at dataene er sensitive til store og små bokstaver. For å zoome raskt til Jonsvatnet trykker vi på ''zoom'' i lagpanelet. For en enklere analyse slår vi sammen de to sjøene ved å velge merge-funksjonen, og lage et felles vannlag. Deretter huker vi av de to lagene slik at de slåes sammen. Det nye laget dukker opp i panelet. For å enklere se hva vi jobber med slår vi av alle lag bortsett fra det vi nettopp har lagt til ved å huke av huken i lagpanelet. Trykker nok en gang på zoom for å få et best mulig overblikk over dataene. Vi gir det nye laget et nytt navn for at det skal bli lettere å jobbe med. Det gjør vi ved å trykke på ''edit'' og skrive inn ''Vann''.  For å lage et verneområde ønsker vi en utvidelse av lagene med 2km. Det gjør vi ved å velge buffer-funksjonen. Vi velger laget vi ønsker buffer på, og skriver 2000 i dialogboksen før vi trykker på ''Add buffer''. Et nytt lag blir lagt til i panelet. Nå kan vi endre navnet på dette laget til ''Verneområde''. Nå vil vi vite hvilken del som av dette verneområdet som ligger i Malvik kommune. Vi trykker på ''Add new layer'' for å legge til Malvik. For å kunne lage et lag av overlappen mellom Malvik og verneområdet bruker vi intersect-funksjonen. Vi velger Malvik og verneområdet og finner overlappen. For å se bedre på hvor dette området er bytter vi til et satelittbilde via ''Background map''-knappen, og skrur av alle lag bortsett fra det siste vi la til. Arealet fåes ved å å bruke area-funksjonen og velge laget. En liten dialogboks viser arealet i kvadratmeter i noen sekunder.	For å finne avstanden mellom Trondheim sentrum og området legger vi til et lag som er Marinen. Og bruker deretter Distance-funksjonen. Vi velger Marinen og overlapplaget og minste avstand dukker opp. For å vise frem området i kommuneplanen vil vi ha en forenklet utgave. Simplify kan hjelpe oss med det. Vi velger Simplify og laget vårt, og får tilbake en forenklet utgave. Vi endrer navnet til "Verneområde sjøfugl". Dermed har vi konstruert verneområdet. 
+	
 
 \section{Bugs, feil og mangler}
 
@@ -183,8 +191,23 @@
 	Designet har også et forbedringspotensiale. I dag mynter programmet veldig på ''Twitter Bootstrap'', og det er ønskelig å lage et mer spesielt og annerledes design. Her kreves det tid i CSS-koden. I utviklingen av programmet har tidsbegrensningen tvunget meg til å fokusere på funksjonalitet.
 	
 	En bedre hjelpetjeneste kunne vært laget for å veillede nye brukere. Med dette kunne også programmet lyktes bedre i undervisningssammenheng. En interaktiv tutorial hadde vært morsomt å få til, men lå utenfor denne oppgaven. 
+	
 \section{Diskusjon - Løser applikasjonen oppgaven?}
+	Slik jeg tolker oppgaven er den å lage et GIS med enkel funksjonalitet, som er bra ut og er enkelt å bruke. Den skal fungere på et utvalgt sett med eksempeldata. Jeg mener at ''Gisse GIS'' oppfyller disse kriteriene. Programmet kunne ha vært enda enklere å bruke, spesielt for de som ikke kjenner til geografiske informasjonssytem fra før av. Design er subjektivt, men jeg mener at programmet virker attraktivt samtidig som det er lett å finne funksjonene. Programmet er vektorbasert noe som betyr at det stilles andre krav enn ved rasterbaserte applikasjoner.
+	
+	Funksjonene som utføres på vektordataene har jeg ikke kodet selv. Dette står PostGIS for. Slik jeg ser det sier oppgaven ingenting om at det ikke er lov å bruke tilleggsbiblioteker av denne typen. Og det er nettopp ved hjelp av disse applikasjonen fremstår som lett å bruke og attraktiv, samtidig som den inneholder robust og viktig GIS-funksjonalitet. Ved å ha tatt i bruk av dette har jeg lært hvilke verktøy som er aktuelle i GIS-verdenen på web i dag, og har kunnet kunnet lage en funksjonsrik applikasjon på så kort tid.
 
+\section{Problemer underveis}
+
+	Utviklingen av en ny applikasjon er alltid heftet med problemer. Og utviklingen av ''Gisse GIS'' er intet unntak. JavaScript hadde jeg liten erfaring med fra før og skapte litt hodebry. 
+	
+	Node.js støtter seg på filosofien om asynkron I/O, og bruker derfor ofte såkalte ''callback''-funksjoner. Dette var en ny tankegang å følge for undertegnede. Men etter å ha lest en del artikler og sett en del eksempelvideoer ble utfordringene løst.
+	
+	Det var også problemer med at popupdialogene til Twitter Bootstrap ikke fanget museklikk, men de ble heller tatt imot av kartet. Det samme gjaldt tastatur. Til slutt besluttet jeg å gå bortifra disse popupdialogene kalt ''modals'', og heller lage noe eget. Dette fungerte etterhvert slik det var tiltenkt.
+	
+	Som nevnt tidligere i rapporten kjører ikke ''Gisse GIS'' godt på smartelefoner og nettbrett. Det ble gjort forsøk på å forbedre dette, men uten stort hell. Dette er et vanskelig problem som krever en del kunnskap, som jeg ikke har på nåværende tidspunkt.
+	
+	Det var også en del problemer med overføring av database/server fra en lokal produksjonsserver på min egen PC til skyen. Her krevdes det kjennskap til UNIX-kommandoer og kommandolinjen. Men dette ble løst etter nok knoting.    
 	
 
 \newpage
