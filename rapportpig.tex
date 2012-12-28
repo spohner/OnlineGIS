@@ -48,7 +48,7 @@
 
 \begin{abstract}
 
-	Gisse GIS er resultatet av min innsats i faget "TBA4251 - Programmering i geomatikk". Det er et enkelt geografisk informasjonssystem som kjører i en nettleser. Ved hjelp av Open Source-programvare vises vektordata over fritt tilgjenglige bakgrunnskart. Vektordataene kan så manipuleres med metoder kjent fra kraftfulle GIS som er desktop-applikasjoner. Metodene som støttes i dag er:
+	Gisse GIS er resultatet av min innsats i faget ''TBA4251 - Programmering i geomatikk''. Det er et enkelt geografisk informasjonssystem som kjører i en nettleser. Ved hjelp av Open Source-programvare vises vektordata over fritt tilgjenglige bakgrunnskart. Vektordataene kan så manipuleres med metoder kjent fra kraftfulle GIS som er desktop-applikasjoner. Metodene som støttes i dag er:
 	
 	\begin{itemize}
 		\item Buffer - Utvider valgt område med en gitt verdi i meter.
@@ -60,7 +60,7 @@
 		\item Simplify - Forenkler geometrien til et vektorlag ved Douglas-Peuker. 
 	\end{itemize}
 	
-	Programmet består av tre deler - database, serverlag og klient. Kommunikasjonen mellom server og klient skjer via Websockets\cite{websockets}. Klienten er skrevet i Javascript, med HTML5 og CSS3. Tilleggsbiblioteker som er brukt i klienten er Knockout.js\cite{knockout} og jQuery\cite{jquery}, samt Twitter Bootstrap\cite{bootstrap}. Serverlaget er skrevet i node.js som tilbyr Javascript til bruk for serverkode. Her er sockets.io\cite{sockets}, Express og databasedriver brukt som tilleggsbiblioteker. Eksempeldata brukt i utviklingen og til demostrasjon er hentet fra Open Street Map og lagres i en PostgreSQL-database med PostGIS-utvidelse\cite{postgis}. Alt er lagret i skyen hos Amazons EC2-tjeneste\cite{ec2}, som sørger for at programmet leveres til brukers nettleser. 
+	Programmet består av tre deler - database, serverlag og klient. Kommunikasjonen mellom server og klient skjer via Websockets\cite{websockets}. Klienten er skrevet i Javascript, med HTML5 og CSS3. Tilleggsbiblioteker som er brukt i klienten er Knockout.js\cite{knockout} og jQuery\cite{jquery}, samt Twitter Bootstrap\cite{bootstrap}. Serverlaget er skrevet i node.js\cite{node} som tilbyr Javascript til bruk for serverkode. Her er socket.io\cite{socket}, Express og databasedriver brukt som tilleggsbiblioteker. Eksempeldata brukt i utviklingen og til demostrasjon er hentet fra Open Street Map og lagres i en PostgreSQL-database med PostGIS-utvidelse\cite{postgis}. Alt er lagret i skyen hos Amazons EC2-tjeneste\cite{ec2}, som sørger for at programmet leveres til brukers nettleser. 
 	
 	Resultatet er et brukervennlig GIS som utfører enkle operasjoner vi kjenner fra før, på frie vektordata som eksempel. ''Gisse GIS'' kan prøves ved å besøke adressen http://gisse.pohnerhenriksen.com i din nettleser.
 	
@@ -122,7 +122,7 @@
 				\item MapQuest
 				\item OpenStreetMap
 				\item Google (roadmap, satelitt og hybrid)
-				\item To kreative kart
+				\item To kreative kart fra Stamen Design
 				\item Bing-satelittbilder
 				\item MapQuest satelittbilder
 			\end{itemize}
@@ -133,7 +133,7 @@
 		
 		\subsubsection{jQuery\cite{jquery}}
 		
-		jQuery er et støttebibliotek til javascript. Det finnes knapt javascript som ikke tar i bruk dette. Det forenkler kodeflyten, og kommandoene i javascript. Biblioteket legger flere og enklere verktøy i verktøykasse til webutvikleren. jQuery blandt annet for animasjonene av menyene, pekere på dynamisk innhold og menyhåndtering.
+		jQuery er et støttebibliotek til javascript. Det finnes knapt javascript som ikke tar i bruk dette. Det forenkler kodeflyten, og kommandoene i javascript. Biblioteket legger flere og enklere verktøy i verktøykassa til webutvikleren. jQuery håndterer blandt annet animasjonene av menyene, pekere på dynamisk innhold og menyhåndtering.
 		
 		\subsubsection{Knockout.js\cite{knockout}}
 		
